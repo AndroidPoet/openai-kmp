@@ -4,7 +4,7 @@
   <img src="art/logo.png" width="1200" alt="OpenAI KMP">
 </p>
 
-Kotlin Multiplatform SDK for OpenAI APIs with the same modular architecture style used in `supabase-kmp`.
+Kotlin Multiplatform SDK for OpenAI APIs.
 
 ## Why This SDK
 
