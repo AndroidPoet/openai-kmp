@@ -4,7 +4,7 @@ Kotlin Multiplatform SDK for OpenAI APIs with the same modular architecture styl
 
 ## Modules
 
-- `openai-core` — `OpenAIResult`, error model, common list model
+- `openai-core` — shared error model and common list model
 - `openai-client` — HTTP transport, config, typed serialization helpers
 - `openai-responses` — `/responses`, `/responses/{id}`, `/responses/compact`, input items/tokens
 - `openai-chat` — `/chat/completions` + completion message listing
@@ -51,7 +51,7 @@ val client = OpenAI.create(apiKey = System.getenv("OPENAI_API_KEY")) {
 }
 
 val responses = client.responses()
-val result = responses.createTyped(
+val responseOutcome = responses.createTyped(
     request = ResponseCreateRequest(
         model = "gpt-4.1-mini",
         input = buildJsonArray {
@@ -68,13 +68,3 @@ val result = responses.createTyped(
     ),
 )
 ```
-
-## Publishing
-
-This project is configured for Maven Central via `com.vanniktech.maven.publish`. Set these secrets in CI:
-
-- `MAVEN_CENTRAL_USERNAME`
-- `MAVEN_CENTRAL_PASSWORD`
-- `SIGNING_KEY_ID`
-- `SIGNING_KEY`
-- `SIGNING_PASSWORD`
