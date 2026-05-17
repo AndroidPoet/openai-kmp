@@ -1,14 +1,15 @@
-# OpenAI KMP
+<h1 align="center" style="font-size: 3.2rem;">OpenAI KMP</h1>
 
 <p align="center">
   <img src="art/logo.png" width="1200" alt="OpenAI KMP">
 </p>
 
-Kotlin Multiplatform SDK for OpenAI APIs.
+<p align="center">
+  Kotlin Multiplatform SDK for OpenAI APIs.
+</p>
 
 ## Why This SDK
 
-- Same modular style as `supabase-kmp`, adapted for OpenAI APIs.
 - Shared transport and configuration across all domains.
 - Raw and typed API access patterns for stable and fast-evolving payloads.
 - Multiplatform-first targets with one consistent client surface.
