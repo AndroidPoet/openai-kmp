@@ -2,7 +2,8 @@ name: Build
 
 on:
   pull_request:
-    branches: [main]
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
@@ -19,7 +20,7 @@ jobs:
       - uses: gradle/actions/setup-gradle@v4
 
       - name: Compile
-        run: ./gradlew compileKotlinJvm
+        run: ./gradlew compileKotlinJvm --no-configuration-cache
 
       - name: Test
-        run: ./gradlew jvmTest
+        run: ./gradlew jvmTest --no-configuration-cache

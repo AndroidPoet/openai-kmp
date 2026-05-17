@@ -4,7 +4,7 @@
 
 ```kotlin
 [versions]
-openai-kmp = "0.1.0"
+openai-kmp = "0.0.1"
 
 [libraries]
 openai-client = { module = "io.github.androidpoet:openai-client", version.ref = "openai-kmp" }

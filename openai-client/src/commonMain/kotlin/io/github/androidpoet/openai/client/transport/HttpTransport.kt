@@ -30,7 +30,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 
-private const val CLIENT_VERSION = "openai-kmp/0.1.0"
+private const val CLIENT_VERSION = "openai-kmp/0.0.1"
 
 internal class HttpTransport(
     private val config: OpenAIConfig,

@@ -1,5 +1,9 @@
 # OpenAI KMP
 
+<p align="center">
+  <img src="art/logo.png" width="1200" alt="OpenAI KMP">
+</p>
+
 Kotlin Multiplatform SDK for OpenAI APIs with the same modular architecture style used in `supabase-kmp`.
 
 ## Why This SDK
@@ -46,7 +50,7 @@ Kotlin Multiplatform SDK for OpenAI APIs with the same modular architecture styl
 
 ```kotlin
 [versions]
-openai-kmp = "0.1.0"
+openai-kmp = "0.0.1"
 
 [libraries]
 openai-client = { module = "io.github.androidpoet:openai-client", version.ref = "openai-kmp" }
