@@ -110,3 +110,24 @@ val upload = uploads.createTyped(
 
 - Raw methods return plain response text and are useful for fast adoption with evolving schemas.
 - Typed helpers decode into data models for stable fields and easier IDE support.
+
+## Outcome Handling Helpers
+
+Every typed call returns an outcome object that supports fluent handling helpers:
+
+```kotlin
+val outcome = client.models().retrieveTyped("gpt-4.1-mini")
+
+outcome
+    .onSuccess { model ->
+        println("model id = ${model.id}")
+    }
+    .onFailure { error ->
+        println("status=${error.statusCode} message=${error.message}")
+    }
+```
+
+Also available:
+- `map`, `flatMap`
+- `recover`, `getOrElse`
+- `getOrNull`, `getOrThrow`, `errorOrNull`

@@ -48,10 +48,12 @@ public inline fun <T, R> OpenAIResult<T>.flatMap(
     is OpenAIResult.Failure -> this
 }
 
+/** Runs [action] only when the outcome is successful and returns the same outcome for chaining. */
 public inline fun <T> OpenAIResult<T>.onSuccess(action: (T) -> Unit): OpenAIResult<T> = apply {
     if (this is OpenAIResult.Success) action(value)
 }
 
+/** Runs [action] only when the outcome failed and returns the same outcome for chaining. */
 public inline fun <T> OpenAIResult<T>.onFailure(action: (OpenAIError) -> Unit): OpenAIResult<T> = apply {
     if (this is OpenAIResult.Failure) action(error)
 }
