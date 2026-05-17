@@ -8,6 +8,17 @@
   Kotlin Multiplatform SDK for OpenAI APIs.
 </p>
 
+<p align="center">
+  <img src="https://img.shields.io/badge/Kotlin-2.1.10-blue.svg?logo=kotlin" alt="Kotlin">
+  <img src="https://img.shields.io/badge/Ktor-3.1.1-blue.svg" alt="Ktor">
+  <img src="https://img.shields.io/badge/Platform-Android%20%7C%20iOS%20%7C%20JVM%20%7C%20macOS%20%7C%20Linux%20%7C%20Windows%20%7C%20WasmJs-green.svg" alt="Platforms">
+  <img src="https://img.shields.io/maven-central/v/io.github.androidpoet/openai-client" alt="Maven Central">
+  <img src="https://img.shields.io/github/v/tag/AndroidPoet/openai-kmp" alt="Git tag">
+  <img src="https://img.shields.io/github/actions/workflow/status/AndroidPoet/openai-kmp/build.yml?branch=main" alt="Build">
+  <img src="https://img.shields.io/github/actions/workflow/status/AndroidPoet/openai-kmp/publish.yml?branch=main" alt="Publish">
+  <img src="https://img.shields.io/badge/License-MIT-orange.svg" alt="License">
+</p>
+
 ## Why This SDK
 
 - Shared transport and configuration across all domains.
