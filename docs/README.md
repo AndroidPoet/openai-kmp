@@ -10,3 +10,7 @@ This folder contains project documentation for architecture, setup, and API usag
 - `reference/api-usage-guide.md` — practical usage by feature module
 - `reference/platform-engine-matrix.md` — platform transport mapping
 - `reference/error-handling.md` — error and retry handling guidance
+- `reference/architecture-deep-dive.md` — internals, layering, and design tradeoffs
+- `reference/module-api-reference.md` — full module-by-module API surface map
+- `reference/integration-patterns.md` — production integration patterns
+- `reference/migration-guide.md` — migration notes and compatibility guidance
