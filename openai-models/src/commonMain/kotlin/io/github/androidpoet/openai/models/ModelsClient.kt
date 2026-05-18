@@ -1,6 +1,7 @@
 package io.github.androidpoet.openai.models
 
 import io.github.androidpoet.openai.client.OpenAIClient
+import io.github.androidpoet.openai.client.endpointPath
 import io.github.androidpoet.openai.core.models.OpenAIListResponse
 import io.github.androidpoet.openai.core.result.OpenAIResult
 import io.github.androidpoet.openai.client.deserialize
@@ -32,7 +33,7 @@ public interface ModelsClient {
 
 internal class ModelsClientImpl(private val client: OpenAIClient) : ModelsClient {
     override suspend fun retrieve(model: String, headers: Map<String, String>): OpenAIResult<String> =
-        client.get("models/$model", headers = headers)
+        client.get(endpointPath("models", model), headers = headers)
 
     override suspend fun list(
         queryParams: List<Pair<String, String>>,
@@ -40,7 +41,7 @@ internal class ModelsClientImpl(private val client: OpenAIClient) : ModelsClient
     ): OpenAIResult<String> = client.get("models", queryParams, headers)
 
     override suspend fun delete(model: String, headers: Map<String, String>): OpenAIResult<String> =
-        client.delete("models/$model", headers = headers)
+        client.delete(endpointPath("models", model), headers = headers)
 }
 
 public fun OpenAIClient.models(): ModelsClient = ModelsClientImpl(this)

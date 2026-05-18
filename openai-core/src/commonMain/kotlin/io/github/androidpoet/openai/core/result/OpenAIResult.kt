@@ -65,6 +65,30 @@ public inline fun <T> OpenAIResult<T>.onFailureCategory(
     if (this is OpenAIResult.Failure && error.category == category) action(error)
 }
 
+public inline fun <T> OpenAIResult<T>.onUnauthorized(
+    action: (OpenAIError) -> Unit,
+): OpenAIResult<T> = onFailureCategory(OpenAIErrorCategory.Unauthorized, action)
+
+public inline fun <T> OpenAIResult<T>.onNotFound(
+    action: (OpenAIError) -> Unit,
+): OpenAIResult<T> = onFailureCategory(OpenAIErrorCategory.NotFound, action)
+
+public inline fun <T> OpenAIResult<T>.onRateLimited(
+    action: (OpenAIError) -> Unit,
+): OpenAIResult<T> = onFailureCategory(OpenAIErrorCategory.RateLimited, action)
+
+public inline fun <T> OpenAIResult<T>.onValidation(
+    action: (OpenAIError) -> Unit,
+): OpenAIResult<T> = onFailureCategory(OpenAIErrorCategory.Validation, action)
+
+public inline fun <T> OpenAIResult<T>.onConflict(
+    action: (OpenAIError) -> Unit,
+): OpenAIResult<T> = onFailureCategory(OpenAIErrorCategory.Conflict, action)
+
+public inline fun <T> OpenAIResult<T>.onServerError(
+    action: (OpenAIError) -> Unit,
+): OpenAIResult<T> = onFailureCategory(OpenAIErrorCategory.Server, action)
+
 public inline fun <T> OpenAIResult<T>.recover(transform: (OpenAIError) -> T): OpenAIResult<T> = when (this) {
     is OpenAIResult.Success -> this
     is OpenAIResult.Failure -> OpenAIResult.Success(transform(error))

@@ -3,6 +3,7 @@ package io.github.androidpoet.openai.files
 import io.github.androidpoet.openai.client.MultipartPart
 import io.github.androidpoet.openai.client.OpenAIClient
 import io.github.androidpoet.openai.client.defaultJson
+import io.github.androidpoet.openai.client.endpointPath
 import io.github.androidpoet.openai.client.toJsonBody
 import io.github.androidpoet.openai.core.models.OpenAIListResponse
 import io.github.androidpoet.openai.core.result.OpenAIResult
@@ -75,7 +76,7 @@ internal class FilesClientImpl(private val client: OpenAIClient) : FilesClient {
     )
 
     override suspend fun retrieve(fileId: String, headers: Map<String, String>): OpenAIResult<String> =
-        client.get("files/$fileId", headers = headers)
+        client.get(endpointPath("files", fileId), headers = headers)
 
     override suspend fun list(
         queryParams: List<Pair<String, String>>,
@@ -86,10 +87,10 @@ internal class FilesClientImpl(private val client: OpenAIClient) : FilesClient {
         fileId: String,
         body: String?,
         headers: Map<String, String>,
-    ): OpenAIResult<String> = client.delete("files/$fileId", body, headers)
+    ): OpenAIResult<String> = client.delete(endpointPath("files", fileId), body, headers)
 
     override suspend fun content(fileId: String, headers: Map<String, String>): OpenAIResult<String> =
-        client.get("files/$fileId/content", headers = headers)
+        client.get(endpointPath("files", fileId, "content"), headers = headers)
 }
 
 public fun OpenAIClient.files(): FilesClient = FilesClientImpl(this)

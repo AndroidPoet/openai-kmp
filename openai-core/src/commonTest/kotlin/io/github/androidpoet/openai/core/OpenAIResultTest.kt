@@ -4,6 +4,8 @@ import io.github.androidpoet.openai.core.result.OpenAIError
 import io.github.androidpoet.openai.core.result.OpenAIResult
 import io.github.androidpoet.openai.core.result.getOrElse
 import io.github.androidpoet.openai.core.result.map
+import io.github.androidpoet.openai.core.result.onRateLimited
+import io.github.androidpoet.openai.core.result.onUnauthorized
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
@@ -24,5 +26,25 @@ class OpenAIResultTest {
         val fallback = result.getOrElse { -1 }
 
         assertEquals(-1, fallback)
+    }
+
+    @Test
+    fun test_openAIResult_onUnauthorized_runsHandlerForUnauthorizedCategory() {
+        var called = false
+        val result: OpenAIResult<Int> = OpenAIResult.Failure(OpenAIError("nope", statusCode = 401))
+
+        result.onUnauthorized { called = true }
+
+        assertTrue(called)
+    }
+
+    @Test
+    fun test_openAIResult_onRateLimited_runsHandlerForRateLimitCategory() {
+        var called = false
+        val result: OpenAIResult<Int> = OpenAIResult.Failure(OpenAIError("slow down", statusCode = 429))
+
+        result.onRateLimited { called = true }
+
+        assertTrue(called)
     }
 }

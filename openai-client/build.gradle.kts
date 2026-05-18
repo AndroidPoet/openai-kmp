@@ -39,6 +39,9 @@ kotlin {
             implementation(libs.ktor.serialization.json)
             implementation(libs.koin.core)
         }
+        commonTest.dependencies {
+            implementation(libs.kotlin.test)
+        }
         androidMain.dependencies {
             implementation(libs.ktor.client.okhttp)
         }

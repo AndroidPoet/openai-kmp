@@ -2,6 +2,7 @@ package io.github.androidpoet.openai.batches
 
 import io.github.androidpoet.openai.client.OpenAIClient
 import io.github.androidpoet.openai.client.defaultJson
+import io.github.androidpoet.openai.client.endpointPath
 import io.github.androidpoet.openai.client.toJsonBody
 import io.github.androidpoet.openai.core.models.OpenAIListResponse
 import io.github.androidpoet.openai.core.result.OpenAIResult
@@ -46,7 +47,7 @@ internal class BatchesClientImpl(private val client: OpenAIClient) : BatchesClie
         client.post("batches", body, headers)
 
     override suspend fun retrieve(batchId: String, headers: Map<String, String>): OpenAIResult<String> =
-        client.get("batches/$batchId", headers = headers)
+        client.get(endpointPath("batches", batchId), headers = headers)
 
     override suspend fun list(
         queryParams: List<Pair<String, String>>,
@@ -54,7 +55,7 @@ internal class BatchesClientImpl(private val client: OpenAIClient) : BatchesClie
     ): OpenAIResult<String> = client.get("batches", queryParams, headers)
 
     override suspend fun cancel(batchId: String, headers: Map<String, String>): OpenAIResult<String> =
-        client.post("batches/$batchId/cancel", headers = headers)
+        client.post(endpointPath("batches", batchId, "cancel"), headers = headers)
 }
 
 public fun OpenAIClient.batches(): BatchesClient = BatchesClientImpl(this)

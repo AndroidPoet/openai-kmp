@@ -40,6 +40,7 @@
 | `openai-moderations` | Moderation checks | `/moderations` |
 | `openai-images` | Generate/edit/variation image workflows | `/images` |
 | `openai-audio` | Speech/transcription/translation | `/audio` |
+| `openai-realtime` | Realtime WebSocket event sessions | `/realtime` |
 | `openai-finetuning` | Fine-tuning jobs/events/checkpoints | `/fine_tuning` |
 | `openai-vectorstores` | Vector store and vector file operations | `/vector_stores` |
 | `openai-uploads` | multipart upload session lifecycle | `/uploads` |
@@ -75,6 +76,7 @@ openai-models = { module = "io.github.androidpoet:openai-models", version.ref = 
 openai-moderations = { module = "io.github.androidpoet:openai-moderations", version.ref = "openai-kmp" }
 openai-images = { module = "io.github.androidpoet:openai-images", version.ref = "openai-kmp" }
 openai-audio = { module = "io.github.androidpoet:openai-audio", version.ref = "openai-kmp" }
+openai-realtime = { module = "io.github.androidpoet:openai-realtime", version.ref = "openai-kmp" }
 openai-finetuning = { module = "io.github.androidpoet:openai-finetuning", version.ref = "openai-kmp" }
 openai-vectorstores = { module = "io.github.androidpoet:openai-vectorstores", version.ref = "openai-kmp" }
 openai-uploads = { module = "io.github.androidpoet:openai-uploads", version.ref = "openai-kmp" }
@@ -96,6 +98,7 @@ kotlin {
             implementation(libs.openai.moderations)  // optional
             implementation(libs.openai.images)       // optional
             implementation(libs.openai.audio)        // optional
+            implementation(libs.openai.realtime)     // optional
             implementation(libs.openai.finetuning)   // optional
             implementation(libs.openai.vectorstores) // optional
             implementation(libs.openai.uploads)      // optional

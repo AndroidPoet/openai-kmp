@@ -2,6 +2,7 @@ package io.github.androidpoet.openai.finetuning
 
 import io.github.androidpoet.openai.client.OpenAIClient
 import io.github.androidpoet.openai.client.defaultJson
+import io.github.androidpoet.openai.client.endpointPath
 import io.github.androidpoet.openai.client.toJsonBody
 import io.github.androidpoet.openai.core.models.OpenAIListResponse
 import io.github.androidpoet.openai.core.result.OpenAIResult
@@ -49,7 +50,7 @@ internal class FineTuningClientImpl(private val client: OpenAIClient) : FineTuni
         client.post("fine_tuning/jobs", body, headers)
 
     override suspend fun retrieveJob(jobId: String, headers: Map<String, String>): OpenAIResult<String> =
-        client.get("fine_tuning/jobs/$jobId", headers = headers)
+        client.get(endpointPath("fine_tuning", "jobs", jobId), headers = headers)
 
     override suspend fun listJobs(
         queryParams: List<Pair<String, String>>,
@@ -57,25 +58,25 @@ internal class FineTuningClientImpl(private val client: OpenAIClient) : FineTuni
     ): OpenAIResult<String> = client.get("fine_tuning/jobs", queryParams, headers)
 
     override suspend fun cancelJob(jobId: String, headers: Map<String, String>): OpenAIResult<String> =
-        client.post("fine_tuning/jobs/$jobId/cancel", headers = headers)
+        client.post(endpointPath("fine_tuning", "jobs", jobId, "cancel"), headers = headers)
 
     override suspend fun events(
         jobId: String,
         queryParams: List<Pair<String, String>>,
         headers: Map<String, String>,
-    ): OpenAIResult<String> = client.get("fine_tuning/jobs/$jobId/events", queryParams, headers)
+    ): OpenAIResult<String> = client.get(endpointPath("fine_tuning", "jobs", jobId, "events"), queryParams, headers)
 
     override suspend fun pause(jobId: String, headers: Map<String, String>): OpenAIResult<String> =
-        client.post("fine_tuning/jobs/$jobId/pause", headers = headers)
+        client.post(endpointPath("fine_tuning", "jobs", jobId, "pause"), headers = headers)
 
     override suspend fun resume(jobId: String, headers: Map<String, String>): OpenAIResult<String> =
-        client.post("fine_tuning/jobs/$jobId/resume", headers = headers)
+        client.post(endpointPath("fine_tuning", "jobs", jobId, "resume"), headers = headers)
 
     override suspend fun checkpoints(
         jobId: String,
         queryParams: List<Pair<String, String>>,
         headers: Map<String, String>,
-    ): OpenAIResult<String> = client.get("fine_tuning/jobs/$jobId/checkpoints", queryParams, headers)
+    ): OpenAIResult<String> = client.get(endpointPath("fine_tuning", "jobs", jobId, "checkpoints"), queryParams, headers)
 }
 
 public fun OpenAIClient.fineTuning(): FineTuningClient = FineTuningClientImpl(this)

@@ -2,6 +2,7 @@ package io.github.androidpoet.openai.vectorstores
 
 import io.github.androidpoet.openai.client.OpenAIClient
 import io.github.androidpoet.openai.client.defaultJson
+import io.github.androidpoet.openai.client.endpointPath
 import io.github.androidpoet.openai.client.toJsonBody
 import io.github.androidpoet.openai.core.models.OpenAIListResponse
 import io.github.androidpoet.openai.core.result.OpenAIResult
@@ -57,13 +58,13 @@ internal class VectorStoresClientImpl(private val client: OpenAIClient) : Vector
         client.post("vector_stores", body, headers)
 
     override suspend fun retrieve(vectorStoreId: String, headers: Map<String, String>): OpenAIResult<String> =
-        client.get("vector_stores/$vectorStoreId", headers = headers)
+        client.get(endpointPath("vector_stores", vectorStoreId), headers = headers)
 
     override suspend fun update(
         vectorStoreId: String,
         body: String,
         headers: Map<String, String>,
-    ): OpenAIResult<String> = client.post("vector_stores/$vectorStoreId", body, headers)
+    ): OpenAIResult<String> = client.post(endpointPath("vector_stores", vectorStoreId), body, headers)
 
     override suspend fun list(
         queryParams: List<Pair<String, String>>,
@@ -71,37 +72,37 @@ internal class VectorStoresClientImpl(private val client: OpenAIClient) : Vector
     ): OpenAIResult<String> = client.get("vector_stores", queryParams, headers)
 
     override suspend fun delete(vectorStoreId: String, headers: Map<String, String>): OpenAIResult<String> =
-        client.delete("vector_stores/$vectorStoreId", headers = headers)
+        client.delete(endpointPath("vector_stores", vectorStoreId), headers = headers)
 
     override suspend fun search(
         vectorStoreId: String,
         body: String,
         headers: Map<String, String>,
-    ): OpenAIResult<String> = client.post("vector_stores/$vectorStoreId/search", body, headers)
+    ): OpenAIResult<String> = client.post(endpointPath("vector_stores", vectorStoreId, "search"), body, headers)
 
     override suspend fun addFile(
         vectorStoreId: String,
         body: String,
         headers: Map<String, String>,
-    ): OpenAIResult<String> = client.post("vector_stores/$vectorStoreId/files", body, headers)
+    ): OpenAIResult<String> = client.post(endpointPath("vector_stores", vectorStoreId, "files"), body, headers)
 
     override suspend fun retrieveFile(
         vectorStoreId: String,
         fileId: String,
         headers: Map<String, String>,
-    ): OpenAIResult<String> = client.get("vector_stores/$vectorStoreId/files/$fileId", headers = headers)
+    ): OpenAIResult<String> = client.get(endpointPath("vector_stores", vectorStoreId, "files", fileId), headers = headers)
 
     override suspend fun listFiles(
         vectorStoreId: String,
         queryParams: List<Pair<String, String>>,
         headers: Map<String, String>,
-    ): OpenAIResult<String> = client.get("vector_stores/$vectorStoreId/files", queryParams, headers)
+    ): OpenAIResult<String> = client.get(endpointPath("vector_stores", vectorStoreId, "files"), queryParams, headers)
 
     override suspend fun deleteFile(
         vectorStoreId: String,
         fileId: String,
         headers: Map<String, String>,
-    ): OpenAIResult<String> = client.delete("vector_stores/$vectorStoreId/files/$fileId", headers = headers)
+    ): OpenAIResult<String> = client.delete(endpointPath("vector_stores", vectorStoreId, "files", fileId), headers = headers)
 }
 
 public fun OpenAIClient.vectorStores(): VectorStoresClient = VectorStoresClientImpl(this)

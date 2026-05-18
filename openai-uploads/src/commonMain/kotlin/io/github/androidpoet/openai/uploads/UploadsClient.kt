@@ -3,6 +3,7 @@ package io.github.androidpoet.openai.uploads
 import io.github.androidpoet.openai.client.MultipartPart
 import io.github.androidpoet.openai.client.OpenAIClient
 import io.github.androidpoet.openai.client.defaultJson
+import io.github.androidpoet.openai.client.endpointPath
 import io.github.androidpoet.openai.client.toJsonBody
 import io.github.androidpoet.openai.core.result.OpenAIResult
 import io.github.androidpoet.openai.client.deserialize
@@ -56,13 +57,13 @@ internal class UploadsClientImpl(private val client: OpenAIClient) : UploadsClie
         client.post("uploads", body, headers)
 
     override suspend fun cancel(uploadId: String, headers: Map<String, String>): OpenAIResult<String> =
-        client.post("uploads/$uploadId/cancel", headers = headers)
+        client.post(endpointPath("uploads", uploadId, "cancel"), headers = headers)
 
     override suspend fun complete(
         uploadId: String,
         body: String,
         headers: Map<String, String>,
-    ): OpenAIResult<String> = client.post("uploads/$uploadId/complete", body, headers)
+    ): OpenAIResult<String> = client.post(endpointPath("uploads", uploadId, "complete"), body, headers)
 
     override suspend fun addPart(
         uploadId: String,
@@ -71,7 +72,7 @@ internal class UploadsClientImpl(private val client: OpenAIClient) : UploadsClie
         contentType: String,
         headers: Map<String, String>,
     ): OpenAIResult<String> = client.postMultipart(
-        endpoint = "uploads/$uploadId/parts",
+        endpoint = endpointPath("uploads", uploadId, "parts"),
         parts = listOf(
             MultipartPart.Binary("data", bytes, filename, contentType),
         ),

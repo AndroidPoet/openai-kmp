@@ -2,6 +2,7 @@ package io.github.androidpoet.openai.chat
 
 import io.github.androidpoet.openai.client.OpenAIClient
 import io.github.androidpoet.openai.client.defaultJson
+import io.github.androidpoet.openai.client.endpointPath
 import io.github.androidpoet.openai.client.toJsonBody
 import io.github.androidpoet.openai.core.models.OpenAIListResponse
 import io.github.androidpoet.openai.core.result.OpenAIResult
@@ -46,13 +47,13 @@ internal class ChatClientImpl(private val client: OpenAIClient) : ChatClient {
         client.post("chat/completions", body, headers)
 
     override suspend fun retrieve(completionId: String, headers: Map<String, String>): OpenAIResult<String> =
-        client.get("chat/completions/$completionId", headers = headers)
+        client.get(endpointPath("chat", "completions", completionId), headers = headers)
 
     override suspend fun update(
         completionId: String,
         body: String,
         headers: Map<String, String>,
-    ): OpenAIResult<String> = client.post("chat/completions/$completionId", body, headers)
+    ): OpenAIResult<String> = client.post(endpointPath("chat", "completions", completionId), body, headers)
 
     override suspend fun list(
         queryParams: List<Pair<String, String>>,
@@ -60,10 +61,10 @@ internal class ChatClientImpl(private val client: OpenAIClient) : ChatClient {
     ): OpenAIResult<String> = client.get("chat/completions", queryParams, headers)
 
     override suspend fun delete(completionId: String, headers: Map<String, String>): OpenAIResult<String> =
-        client.delete("chat/completions/$completionId", headers = headers)
+        client.delete(endpointPath("chat", "completions", completionId), headers = headers)
 
     override suspend fun messages(completionId: String, headers: Map<String, String>): OpenAIResult<String> =
-        client.get("chat/completions/$completionId/messages", headers = headers)
+        client.get(endpointPath("chat", "completions", completionId, "messages"), headers = headers)
 }
 
 public fun OpenAIClient.chat(): ChatClient = ChatClientImpl(this)

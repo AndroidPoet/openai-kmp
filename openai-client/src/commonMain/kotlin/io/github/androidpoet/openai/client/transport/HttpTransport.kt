@@ -145,7 +145,10 @@ internal class HttpTransport(
                                 key = part.name,
                                 value = part.bytes,
                                 headers = io.ktor.http.Headers.build {
-                                    append(HttpHeaders.ContentDisposition, "filename=\"${part.filename}\"")
+                                    append(
+                                        HttpHeaders.ContentDisposition,
+                                        "form-data; name=\"${part.name}\"; filename=\"${part.filename}\"",
+                                    )
                                     append(HttpHeaders.ContentType, part.contentType)
                                 },
                             )

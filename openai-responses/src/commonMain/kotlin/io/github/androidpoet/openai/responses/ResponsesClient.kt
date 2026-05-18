@@ -2,6 +2,7 @@ package io.github.androidpoet.openai.responses
 
 import io.github.androidpoet.openai.client.OpenAIClient
 import io.github.androidpoet.openai.client.defaultJson
+import io.github.androidpoet.openai.client.endpointPath
 import io.github.androidpoet.openai.client.toJsonBody
 import io.github.androidpoet.openai.core.models.OpenAIListResponse
 import io.github.androidpoet.openai.core.result.OpenAIResult
@@ -86,19 +87,19 @@ internal class ResponsesClientImpl(private val client: OpenAIClient) : Responses
         client.post(endpoint = "responses", body = body, headers = headers)
 
     override suspend fun retrieve(responseId: String, headers: Map<String, String>): OpenAIResult<String> =
-        client.get(endpoint = "responses/$responseId", headers = headers)
+        client.get(endpoint = endpointPath("responses", responseId), headers = headers)
 
     override suspend fun delete(responseId: String, headers: Map<String, String>): OpenAIResult<String> =
-        client.delete(endpoint = "responses/$responseId", headers = headers)
+        client.delete(endpoint = endpointPath("responses", responseId), headers = headers)
 
     override suspend fun cancel(responseId: String, headers: Map<String, String>): OpenAIResult<String> =
-        client.post(endpoint = "responses/$responseId/cancel", headers = headers)
+        client.post(endpoint = endpointPath("responses", responseId, "cancel"), headers = headers)
 
     override suspend fun compact(body: String, headers: Map<String, String>): OpenAIResult<String> =
         client.post(endpoint = "responses/compact", body = body, headers = headers)
 
     override suspend fun inputItems(responseId: String, headers: Map<String, String>): OpenAIResult<String> =
-        client.get(endpoint = "responses/$responseId/input_items", headers = headers)
+        client.get(endpoint = endpointPath("responses", responseId, "input_items"), headers = headers)
 
     override suspend fun inputTokens(body: String, headers: Map<String, String>): OpenAIResult<String> =
         client.post(endpoint = "responses/input_tokens", body = body, headers = headers)
