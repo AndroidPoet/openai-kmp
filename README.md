@@ -67,7 +67,17 @@ openai-kmp = "0.0.1"
 [libraries]
 openai-client = { module = "io.github.androidpoet:openai-client", version.ref = "openai-kmp" }
 openai-responses = { module = "io.github.androidpoet:openai-responses", version.ref = "openai-kmp" }
+openai-chat = { module = "io.github.androidpoet:openai-chat", version.ref = "openai-kmp" }
+openai-embeddings = { module = "io.github.androidpoet:openai-embeddings", version.ref = "openai-kmp" }
 openai-files = { module = "io.github.androidpoet:openai-files", version.ref = "openai-kmp" }
+openai-batches = { module = "io.github.androidpoet:openai-batches", version.ref = "openai-kmp" }
+openai-models = { module = "io.github.androidpoet:openai-models", version.ref = "openai-kmp" }
+openai-moderations = { module = "io.github.androidpoet:openai-moderations", version.ref = "openai-kmp" }
+openai-images = { module = "io.github.androidpoet:openai-images", version.ref = "openai-kmp" }
+openai-audio = { module = "io.github.androidpoet:openai-audio", version.ref = "openai-kmp" }
+openai-finetuning = { module = "io.github.androidpoet:openai-finetuning", version.ref = "openai-kmp" }
+openai-vectorstores = { module = "io.github.androidpoet:openai-vectorstores", version.ref = "openai-kmp" }
+openai-uploads = { module = "io.github.androidpoet:openai-uploads", version.ref = "openai-kmp" }
 ```
 
 ### Module Dependencies
@@ -76,9 +86,19 @@ openai-files = { module = "io.github.androidpoet:openai-files", version.ref = "o
 kotlin {
     sourceSets {
         commonMain.dependencies {
-            implementation(libs.openai.client)
-            implementation(libs.openai.responses)
-            implementation(libs.openai.files)
+            implementation(libs.openai.client)       // base transport/config
+            implementation(libs.openai.responses)    // optional
+            implementation(libs.openai.chat)         // optional
+            implementation(libs.openai.embeddings)   // optional
+            implementation(libs.openai.files)        // optional
+            implementation(libs.openai.batches)      // optional
+            implementation(libs.openai.models)       // optional
+            implementation(libs.openai.moderations)  // optional
+            implementation(libs.openai.images)       // optional
+            implementation(libs.openai.audio)        // optional
+            implementation(libs.openai.finetuning)   // optional
+            implementation(libs.openai.vectorstores) // optional
+            implementation(libs.openai.uploads)      // optional
         }
     }
 }
