@@ -163,7 +163,7 @@ This preserves consistency with existing modules.
 ## Operational Recommendations
 
 1. Use one long-lived `OpenAIClient` per app process.
-2. Inject feature clients via DI rather than creating ad hoc instances.
+2. Expose feature clients from a shared composition root rather than creating ad hoc instances.
 3. Centralize retry/backoff in your app service layer.
 4. Keep endpoint-specific request builders close to domain logic.
 5. Add telemetry around status code and latency per endpoint family.

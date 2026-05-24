@@ -68,5 +68,5 @@ client.close()
 ## Recommended Structure in Apps
 
 1. Create one shared `OpenAIClient` per app process/session.
-2. Expose feature clients (`responses()`, `files()`, `embeddings()`) through your DI container.
+2. Expose feature clients (`responses()`, `files()`, `embeddings()`) through your application composition layer.
 3. Keep request body builders close to domain logic rather than inside UI code.
