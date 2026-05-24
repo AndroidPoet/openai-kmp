@@ -13,7 +13,6 @@ kotlin {
     jvm(); iosX64(); iosArm64(); iosSimulatorArm64(); macosX64(); macosArm64()
     tvosX64(); tvosArm64(); tvosSimulatorArm64(); watchosX64(); watchosArm64(); watchosSimulatorArm64()
     linuxX64(); mingwX64(); wasmJs { browser() }
-    sourceSets { commonMain.dependencies { api(project(":openai-core")); implementation(project(":openai-client")); implementation(libs.kotlinx.serialization.json); implementation(libs.koin.core) } }
 }
 android { namespace = "io.github.androidpoet.openai.embeddings"; compileSdk = Configuration.COMPILE_SDK; defaultConfig { minSdk = Configuration.MIN_SDK } }
 mavenPublishing { coordinates(Configuration.GROUP, "openai-embeddings", Configuration.VERSION) }

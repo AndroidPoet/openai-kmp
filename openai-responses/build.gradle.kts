@@ -35,7 +35,6 @@ kotlin {
             api(project(":openai-core"))
             implementation(project(":openai-client"))
             implementation(libs.kotlinx.serialization.json)
-            implementation(libs.koin.core)
         }
     }
 }
