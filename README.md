@@ -284,7 +284,7 @@ val client = OpenAI.create(apiKey = token) {
 ## Recommended Integration Pattern
 
 1. Create one long-lived `OpenAIClient` instance.
-2. Expose feature clients from your DI container.
+2. Expose feature clients from your application composition layer.
 3. Keep endpoint request building in domain/services layer.
 4. Centralize retry/backoff policy in one place.
 5. Close the client on app shutdown.
